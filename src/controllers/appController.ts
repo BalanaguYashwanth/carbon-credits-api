@@ -2,6 +2,46 @@ import { getFullnodeUrl, SuiClient } from '@mysten/sui/client';
 import { Transaction } from '@mysten/sui/transactions';
 import { Ed25519Keypair } from '@mysten/sui/keypairs/ed25519';
 
+/**
+ * @swagger
+ * /create_company:
+ *   post:
+ *     summary: Create a new company with optional initial credits
+ *     tags: [Company]
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             required:
+ *               - companyName
+ *             properties:
+ *               companyName:
+ *                 type: string
+ *                 example: "GreenTech"
+ *               credits:
+ *                 type: number
+ *                 example: 100
+ *     responses:
+ *       200:
+ *         description: Company created successfully
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 companyId:
+ *                   type: string
+ *                 data:
+ *                   type: string
+ *                 transaction:
+ *                   type: string
+ *                 txStatus:
+ *                   type: string
+ *       400:
+ *         description: Validation or blockchain execution error
+ */
 export const createCompany = async(req, res) => {
     try {
         const {companyName, credits=0} =  req.body
@@ -45,6 +85,47 @@ export const createCompany = async(req, res) => {
       }
 }
 
+/**
+ * @swagger
+ * /add_or_update_credits:
+ *   post:
+ *     summary: Add or update credits for an existing company
+ *     tags: [Company]
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             required:
+ *               - companyId
+ *               - credits
+ *             properties:
+ *               companyId:
+ *                 type: string
+ *                 example: "0xabc123..."
+ *               credits:
+ *                 type: number
+ *                 example: 200
+ *     responses:
+ *       200:
+ *         description: Credits updated successfully
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 companyId:
+ *                   type: string
+ *                 data:
+ *                   type: string
+ *                 transaction:
+ *                   type: string
+ *                 txStatus:
+ *                   type: string
+ *       400:
+ *         description: Validation or blockchain execution error
+ */
 export const addOrUpdateCredits = async (req, res) => {
     try {
         const {companyId, credits} =  req.body
