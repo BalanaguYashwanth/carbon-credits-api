@@ -19,10 +19,7 @@ import { Ed25519Keypair } from '@mysten/sui/keypairs/ed25519';
  *             properties:
  *               companyName:
  *                 type: string
- *                 example: "GreenTech"
- *               credits:
- *                 type: number
- *                 example: 100
+ *                 example: "Cognito Group"
  *     responses:
  *       200:
  *         description: Company created successfully
