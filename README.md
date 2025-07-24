@@ -1,4 +1,3 @@
-````md
 # Carbon Credits API
 
 A simple Node.js + Express API that interacts with the Sui blockchain to create companies and manage their carbon credit data.
@@ -39,4 +38,3 @@ Update the carbon credits of an existing company.
   "companyId": "0xf03...873",
   "credits": "1500"
 }
-```
